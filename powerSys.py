@@ -7,26 +7,26 @@ As we progress, i will be adding more functionality to this file.
 import numpy as np
 
 class powerSys:
+	"""
+	powerSys is used specifically for electrical networks of power systems.
+	This requires numpy (imported as np) to work properly
+	
+	Parameters of the network: 
+		self.networkfile	-	name of file which contains the details of the network [Node1, Node2, R, X]
+		self.data		-	input data matrix after reading 'networkfile'
+		self.nElements		-	number of elements in the network
+		self.nBuses		- 	number of nodes (or buses) in the network
+		self.elements		-	matrix containing all the elements in terms of respective buses [Node1, Node2]
+		self.z			-	impedence of corresponding element (as indexed in self.element)
+		self.y			-	admittance of corresponding element (as indexed in self.element)
+		self.Ybus		-	bus admittance matrix of the network (computed by the 'computeYbus()' method)
+
+	Methods:
+		self.computeYbus	-	computes and returns the bus admittance matrix (self.Ybus) of the given network 
+		
+	"""
 
 	def __init__(self, networkfile):
-		"""
-		powerSys is used specifically for electrical networks of power systems.
-		This requires numpy (imported as np) to work properly
-		
-		Parameters: 
-			self.networkfile	-	name of file which contains the details of the network [Node1, Node2, R, X]
-			self.data			-	input data matrix after reading 'networkfile'
-			self.nElements		-	Number of elements in the network
-			self.nBuses			- 	number of nodes (or buses) in the network
-			self.elements		-	matrix containing all the elements in terms of respective buses [Node1, Node2]
-			self.z				-	impedence of corresponding element (as indexed in self.element)
-			self.y				-	admittance of corresponding element (as indexed in self.element)
-			self.Ybus			-	Bus admittance matrix of the network (computed by the 'computeYbus()' method)
-
-		Methods:
-			self.computeYbus	-	computes and returns the bus admittance matrix (self.Ybus) of the given network 
-			
-		"""		
 
 		self.networkfile = networkfile
 		self.data = np.loadtxt(self.networkfile)	#load the matrix
